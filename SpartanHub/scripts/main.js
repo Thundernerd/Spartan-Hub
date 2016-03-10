@@ -7,6 +7,10 @@ function onLoggedIn() {
     loadProfile();
 }
 
+function onProfileLoaded() {
+    appendLine(JSON.stringify(profile));
+}
+
 function appendLine(line) {
     $("body").append(line + "<br>");
 }

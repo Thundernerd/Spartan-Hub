@@ -42,7 +42,7 @@ function loadProfile() {
         profile.totalLosses = profile.arenaLosses + profile.warzoneLosses;
         profile.totalWinLossRatio = Math.round(profile.totalWins/profile.totalLosses * 100) / 100;
 
-        console.log(profile);
+        onProfileLoaded();
     });
 }
 
