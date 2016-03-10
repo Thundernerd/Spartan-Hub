@@ -1,1 +1,8 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+
+    color: rgb(60,59,59);
+    background-color: rgb(250,250,250);
+}
