@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 function onLoggedIn() {
-    appendLine("logged in as " + gamertag);
+    appendLine(format("logged in as {0}", gamertag));
 }
 
 function appendLine(line) {
