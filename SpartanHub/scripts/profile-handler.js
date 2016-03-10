@@ -1,5 +1,33 @@
+var profile = {
+    name: "",
+    tag: "",
+    imageUrl: "",
+
+    rank: "",
+    currentXp: 0,
+    maximumXp: 0,
+    levelPercentage: 0,
+
+    arenaTime: 0,
+    arenaWins: 0,
+    arenaLosses: 0,
+    arenaWinLossRatio: 0,
+
+    warzoneTime: 0,
+    warzoneWins: 0,
+    warzoneLosses: 0,
+    warzoneWinLossRatio: 0,
+
+    totalTime: 0,
+    totalWins: 0,
+    totalLosses: 0,
+    totalWinLossRatio: 0
+}
+
 function loadProfile() {
     var url = format("https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/service-records/players/{0}", gamertag);
+
+    profile.name = gamertag;
 
     $.get(url, function(data) {
         var html = $(data);
@@ -9,6 +37,12 @@ function loadProfile() {
 
         getArenaProfile(arenaNode);
         getWarzoneProfile(warzoneNode);
+
+        profile.totalWins = profile.arenaWins + profile.warzoneWins;
+        profile.totalLosses = profile.arenaLosses + profile.warzoneLosses;
+        profile.totalWinLossRatio = Math.round(profile.totalWins/profile.totalLosses * 100) / 100;
+
+        console.log(profile);
     });
 }
 
@@ -21,18 +55,18 @@ function getArenaProfile(node) {
     temp = nameGrid.find(".persona.large");
     temp = $(temp[0]).find(".image");
     temp = $(temp[0]).find("img");
-    var img = $(temp).attr("src");
+    profile.imageUrl = $(temp).attr("src");
 
     temp = nameGrid.find(".persona.large");
     temp = $(temp[0]).find(".text");
     temp = $(temp[0]).find("p");
-    var tag = $(temp[0]).text();
+    profile.tag = $(temp[0]).text();
 
     var statsGrid = $(nodes[1]);
 
     temp = statsGrid.find(".stat.spartan-rank");
     temp = $(temp[0]).find("p");
-    var rank = $(temp).text();
+    profile.rank = $(temp).text();
 
     temp = $(temp).parent();
     temp = $(temp).find("span");
@@ -40,9 +74,9 @@ function getArenaProfile(node) {
     temp = temp.replace("XP/","").trim();
 
     var splits = temp.split("/");
-    var currentXP = parseInt(splits[0]);
-    var maximumXP = parseInt(splits[1]);
-    var percentage = currentXP/maximumXP;
+    profile.currentXp = parseInt(splits[0]);
+    profile.maximumXp = parseInt(splits[1]);
+    profile.levelPercentage = Math.round(profile.currentXp/profile.maximumXp * 100) / 100;
 
     // temp = statsGrid.find(".col");
     // temp = $(temp[1]).find(".stat");
@@ -54,7 +88,7 @@ function getArenaProfile(node) {
     temp = statsGrid.find(".col");
     temp = $(temp[1]).find(".stat");
     temp = $(temp[1]).find("p");
-    var playTime = $(temp).text().replace("Playtime","").trim();
+    profile.arenaTime = $(temp).text().replace("Playtime","").trim();
 
     temp = statsGrid.find(".col");
     temp = $(temp[1]).find(".stat");
@@ -64,9 +98,9 @@ function getArenaProfile(node) {
     temp = statsGrid.find(".col");
     temp = $(temp[1]).find(".stat");
     temp = $(temp[3]).find("p");
-    var wins = parseInt($(temp).text().replace("Wins","").trim());
-    var losses = games-wins;
-    var winLossRatio = wins/losses;
+    profile.arenaWins = parseInt($(temp).text().replace("Wins","").trim());
+    profile.arenaLosses = games-profile.arenaWins;
+    profile.arenaWinLossRatio = Math.round(profile.arenaWins/profile.arenaLosses * 100) / 100;
 }
 
 function getWarzoneProfile(node) {
@@ -77,7 +111,7 @@ function getWarzoneProfile(node) {
 
     temp = $(infoColumn).find(".stat");
     temp = $(temp[0]).find("p");
-    var playTime = $(temp).text().replace("Playtime","").trim();
+    profile.warzoneTime = $(temp).text().replace("Playtime","").trim();
 
     temp = $(infoColumn).find(".stat");
     temp = $(temp[1]).find("p");
@@ -85,7 +119,7 @@ function getWarzoneProfile(node) {
 
     temp = $(infoColumn).find(".stat");
     temp = $(temp[2]).find("p");
-    var wins = parseInt($(temp).text().replace("Wins","").trim());
-    var losses = games-wins;
-    var winLossRatio = wins/losses;
+    profile.warzoneWins = parseInt($(temp).text().replace("Wins","").trim());
+    profile.warzoneLosses = games-profile.warzoneWins;
+    profile.warzoneWinLossRatio = Math.round(profile.warzoneWins/profile.warzoneLosses * 100) / 100;
 }
