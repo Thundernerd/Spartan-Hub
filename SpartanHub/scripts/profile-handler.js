@@ -70,5 +70,22 @@ function getArenaProfile(node) {
 }
 
 function getWarzoneProfile(node) {
+    var temp;
+    var nodes = $(node).find(".grid");
 
+    var infoColumn = $(nodes[0]).find(".col")[2];
+
+    temp = $(infoColumn).find(".stat");
+    temp = $(temp[0]).find("p");
+    var playTime = $(temp).text().replace("Playtime","").trim();
+
+    temp = $(infoColumn).find(".stat");
+    temp = $(temp[1]).find("p");
+    var games = parseInt($(temp).text().replace("Games Completed","").trim());
+
+    temp = $(infoColumn).find(".stat");
+    temp = $(temp[2]).find("p");
+    var wins = parseInt($(temp).text().replace("Wins","").trim());
+    var losses = games-wins;
+    var winLossRatio = wins/losses;
 }
