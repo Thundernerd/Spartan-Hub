@@ -44,12 +44,12 @@ function getArenaProfile(node) {
     var maximumXP = parseInt(splits[1]);
     var percentage = currentXP/maximumXP;
 
-    temp = statsGrid.find(".col");
-    temp = $(temp[1]).find(".stat");
-    temp = $(temp[0]).find(".value");
-    var kills = parseInt($(temp[1]).text());
-    var deaths = parseInt($(temp[2]).text());
-    var killDeathRatio = kills/deaths;
+    // temp = statsGrid.find(".col");
+    // temp = $(temp[1]).find(".stat");
+    // temp = $(temp[0]).find(".value");
+    // var kills = parseInt($(temp[1]).text());
+    // var deaths = parseInt($(temp[2]).text());
+    // var killDeathRatio = kills/deaths;
 
     temp = statsGrid.find(".col");
     temp = $(temp[1]).find(".stat");
