@@ -12,14 +12,14 @@ function doLogin() {
 
             onLoggedIn()
         } else {
-            window.addEventListener("focus", onFocus);
+            window.addEventListener("focus", onFocusLogin);
 
             chrome.tabs.create({"url":"https://halowaypoint.com/", "active":true});
         }
     });
 }
 
-function onFocus() {
+function onFocusLogin() {
     $.get("https://www.halowaypoint.com/", function(data) {
         var html = $(data);
         var node = html.find("span.gamertag");
@@ -28,7 +28,7 @@ function onFocus() {
             node = html.find("span.gamertag.case-sensitive");
             gamertag = $(node[0]).text();
 
-            window.removeEventListener("focus", onFocus);
+            window.removeEventListener("focus", onFocusLogin);
 
             onLoggedIn();
         }
