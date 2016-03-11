@@ -58,7 +58,7 @@ function getCommendations(html) {
         var c = $(comms[i]);
 
         var commendation = {
-            "category": category,
+            "category": category.replace("Commendations", "").trim(),
             "imageUrl": $(c.find("img")[0]).attr("src").trim(),
             "title": $(c.find(".text--large")[0]).text().trim(),
             "level": $(c.find(".text--smallest")[0]).text().substr(6).trim(),

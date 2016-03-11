@@ -3,7 +3,12 @@ var loadoutUrl = "https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox
 var powerAndVehicleUrl = "https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/requisitions/categories/powerandvehicle?ownedOnly=False";
 var boostUrl = "https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/requisitions/categories/boost?ownedOnly=False";
 
-var requisitions = { }
+var requisitions = {
+    "Customization": [],
+    "Loadout": [],
+    "Power Weapons and Vehicles": [],
+    "Boost": []
+}
 
 function loadRequisitions() {
     var customizationDone = false;
@@ -11,19 +16,19 @@ function loadRequisitions() {
     var powerAndVehicleDone = false;
     var boostDone = false;
 
-    downloadRequisitions(customizationUrl, function() {
+    downloadRequisitions(customizationUrl, "Customization", function() {
         customizationDone = true;
         checkRequisitions(customizationDone,loadoutDone,powerAndVehicleDone,boostDone);
     });
-    downloadRequisitions(loadoutUrl, function() {
+    downloadRequisitions(loadoutUrl, "Loadout", function() {
         loadoutDone = true;
         checkRequisitions(customizationDone,loadoutDone,powerAndVehicleDone,boostDone);
     });
-    downloadRequisitions(powerAndVehicleUrl, function() {
+    downloadRequisitions(powerAndVehicleUrl, "Power Weapons and Vehicles", function() {
         powerAndVehicleDone = true;
         checkRequisitions(customizationDone,loadoutDone,powerAndVehicleDone,boostDone);
     });
-    downloadRequisitions(boostUrl, function() {
+    downloadRequisitions(boostUrl, "Boost", function() {
         boostDone = true;
         checkRequisitions(customizationDone,loadoutDone,powerAndVehicleDone,boostDone);
     });
@@ -35,12 +40,12 @@ function checkRequisitions(one,two,three,four) {
     }
 }
 
-function downloadRequisitions(url, callback) {
+function downloadRequisitions(url, category, callback) {
     $.get(url, function(data) {
         var html = $(data);
         var regions = getRegions(data);
         var reqs = getRequisitions(regions);
-        setRequisitions(reqs);
+        setRequisitions(category, reqs);
 
         callback();
     });
@@ -101,13 +106,16 @@ function getRequisitions(region) {
     return reqs;
 }
 
-function setRequisitions(reqs) {
+function setRequisitions(category, reqs) {
     for (var i = 0; i < reqs.length; i++) {
         var req = reqs[i];
-        var category = toPascalCase(req.category);
+        var subcategory = toPascalCase(req.category);
         if (requisitions[category] == undefined) {
             requisitions[category] = [];
         }
-        requisitions[category].push(req);
+        if (requisitions[category][subcategory] == undefined) {
+            requisitions[category][subcategory] = [];
+        }
+        requisitions[category][subcategory].push(req);
     }
 }
