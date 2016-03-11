@@ -9,9 +9,9 @@ function onLoggedIn() {
 }
 
 function onProfileLoaded() {
-    appendLine(JSON.stringify(profile));
+    appendLine("profile loaded");
 }
 
-function appendLine(line) {
-    $("body").append(line + "<br>");
+function onRequisitionsLoaded() {
+    appendLine("requisitions loaded");
 }
