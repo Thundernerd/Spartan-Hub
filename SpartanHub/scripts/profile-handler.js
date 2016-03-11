@@ -42,6 +42,16 @@ function loadProfile() {
         profile.totalLosses = profile.arenaLosses + profile.warzoneLosses;
         profile.totalWinLossRatio = Math.round(profile.totalWins/profile.totalLosses * 100) / 100;
 
+        var at = getPlaytime(profile.arenaTime);
+        var wt = getPlaytime(profile.warzoneTime);
+        var temp = format("{0}.{1}:{2}:{3}",
+            at.days+wt.days, at.hours+wt.hours, at.minutes+wt.minutes, at.seconds+wt.seconds);
+        var tt = getPlaytime(temp);
+
+        profile.arenaTime = at;
+        profile.warzoneTime = wt;
+        profile.totalTime = tt;
+
         onProfileLoaded();
     });
 }
@@ -122,4 +132,38 @@ function getWarzoneProfile(node) {
     profile.warzoneWins = parseInt($(temp).text().replace("Wins","").trim());
     profile.warzoneLosses = games-profile.warzoneWins;
     profile.warzoneWinLossRatio = Math.round(profile.warzoneWins/profile.warzoneLosses * 100) / 100;
+}
+
+function getPlaytime(srep) {
+    var ind = 0;
+    var days = 0;
+    var hours = 0;
+    var minutes = 0;
+    var seconds = 0;
+
+    ind = srep.indexOf('.');
+    if (ind != -1) {
+        var temp = srep.substring(0,ind);
+        days = parseInt(temp);
+    }
+
+    srep = srep.substring(ind + 1);
+    var splits = srep.split(':');
+    if (splits.length == 3) {
+        seconds = parseInt(splits[2]);
+        minutes = parseInt(splits[1]);
+        hours = parseInt(splits[0]);
+    } else if (splits.length == 2) {
+        seconds = parseInt(splits[2]);
+        minutes = parseInt(splits[1]);
+    } else if (splits.length == 1) {
+        seconds = parseInt(splits[2]);
+    }
+
+    return {
+        "days": days,
+        "hours": hours,
+        "minutes": minutes,
+        "seconds": seconds
+    };
 }
