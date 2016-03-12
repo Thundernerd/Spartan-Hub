@@ -6,7 +6,7 @@ function doProfileUI() {
     text += format("<img src=\"{0}\"></img>", profile.imageUrl);
     text += "</section>";
 
-    append(text);
+    append(text, "#header");
 
     // appendLine(format("{0} - {1}", profile.name, profile.tag));
     // appendLine(format("<img src=\"{0}\"></img>", profile.imageUrl));
@@ -14,6 +14,12 @@ function doProfileUI() {
     // appendLine(format("Arena: W:{0} L:{1} R: {2}", profile.arenaWins, profile.arenaLosses, profile.arenaWinLossRatio));
     // appendLine(format("Warzone: W:{0} L:{1} R: {2}", profile.warzoneWins, profile.warzoneLosses, profile.warzoneWinLossRatio));
     // appendLine(format("Total: W:{0} L:{1} R: {2}", profile.totalWins, profile.totalLosses, profile.totalWinLossRatio));
+}
+
+function doCommendationsUI() {
+    var text = "";
+
+    append(text, "#commendations");
 }
 
 function doRequisitionsUI() {
@@ -32,36 +38,31 @@ function doRequisitionsUI() {
             if (i < keyCount -1) {
                 text += "<section class=\"requisition-category\">";
             } else {
-                text += "<section class=\"requisition-category-last\">";
+                text += "<section class=\"requisition-category last\">";
             }
 
             text += format("<h4 class=\"requisition-category-header\">{0}</h4>", scat);
 
-            text += formatRequisition("Common", requisitions, cat, scat) + " ";
-            text += formatRequisition("Uncommon", requisitions, cat, scat) + " ";
-            text += formatRequisition("Rare", requisitions, cat, scat) + "<br>";
-            text += formatRequisition("Ultra Rare", requisitions, cat, scat) + " ";
+            text += "<table><tr>"
+            text += formatRequisition("Common", requisitions, cat, scat);
+            text += formatRequisition("Uncommon", requisitions, cat, scat);
+            text += formatRequisition("Rare", requisitions, cat, scat) + "</tr><tr>";
+            text += formatRequisition("Ultra Rare", requisitions, cat, scat);
             text += formatRequisition("Legendary", requisitions, cat, scat);
-
-            text += "</section>";
+            text += "</tr></table></section>";
 
             i++;
         }
+
         text += "</section>";
-
-        append(text);
-
-        if (!left) {
-            append("<br style=\"clear:both;\">");
-            appendLine("");
-        }
+        append(text, "#requisitions");
 
         left = !left;
     }
 }
 
 function formatRequisition(rarity, reqs, cat, scat) {
-    return format("{0}: {1}/{2}", rarity, reqs[cat][scat].filter(function(obj) {
+    return format("<td>{0}: {1}/{2}</td>", rarity, reqs[cat][scat].filter(function(obj) {
         return obj.rarity == rarity && obj.isOwned == true;
     }).length, reqs[cat][scat].filter(function(obj) {
         return obj.rarity == rarity;

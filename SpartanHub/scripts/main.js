@@ -17,7 +17,5 @@ function onRequisitionsLoaded() {
 }
 
 function onCommendationsLoaded() {
-    for(var key in commendations) {
-        // appendLine(format("{0}: {1}", key, commendations[key].length));
-    }
+    doCommendationsUI();
 }
