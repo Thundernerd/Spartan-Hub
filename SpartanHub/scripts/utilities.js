@@ -14,10 +14,12 @@ function toPascalCase(value) {
         });
 }
 
-function appendLine(line) {
-    $("body").append(line + "<br>");
+function appendLine(line, id) {
+    if (id === undefined) id = "body";
+    $(id).append(line + "<br>");
 }
 
-function append(line) {
-    $("body").append(line);
+function append(line, id) {
+    if (id === undefined) id = "body";
+    $(id).append(line);
 }

@@ -7,7 +7,7 @@ body {
     background-color: rgb(250,250,250);
 
     margin: 0 auto;
-    width: 820px;
+    width: 1020px;
 }
 
 h2 {
@@ -49,8 +49,9 @@ h4 {
 }
 
 .requisition-wrapper {
-    width: 400px;
+    width: 500px;
     float: left;
+    margin-top: 15px;
 }
 
 .requisition-wrapper.left {
@@ -70,20 +71,27 @@ h4 {
 }
 
 .requisition-category {
-    width: 398px;
+    width: 498px;
 
     border: solid;
     border-width: 0px 1px 1px 1px;
 }
 
-.requisition-category-last {
-    width: 398px;
-
-    border: solid;
-    border-width: 0px 1px 1px 1px;
+.requisition-category.last {
     border-bottom-right-radius: 10px;
 }
 
+.requisition-category table {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.requisition-category td {
+    width: 150px;
+}
+
 .requisition-category-header {
-    padding-left: 10px;
+    padding: 5px 0px 5px 15px;
+    /*padding-left: 10px;
+    paddin*/
 }
