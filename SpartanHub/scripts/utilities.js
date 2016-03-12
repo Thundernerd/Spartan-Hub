@@ -17,3 +17,7 @@ function toPascalCase(value) {
 function appendLine(line) {
     $("body").append(line + "<br>");
 }
+
+function append(line) {
+    $("body").append(line);
+}
