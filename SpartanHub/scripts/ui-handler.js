@@ -27,8 +27,13 @@ function doRequisitionsUI() {
             }
 
             text += format("<h4 class=\"requisition-category-header\">{0}</h4>", scat);
-            text += format("Common: 0; Uncommon: 0; Rare: 0 <br>");
-            text += format("Ultra Rare: 0; Legendary: 0");
+
+            text += formatRequisition("Common", requisitions, cat, scat) + " ";
+            text += formatRequisition("Uncommon", requisitions, cat, scat) + " ";
+            text += formatRequisition("Rare", requisitions, cat, scat) + "<br>";
+            text += formatRequisition("Ultra Rare", requisitions, cat, scat) + " ";
+            text += formatRequisition("Legendary", requisitions, cat, scat);
+
             text += "</section>";
 
             i++;
@@ -44,4 +49,12 @@ function doRequisitionsUI() {
 
         left = !left;
     }
+}
+
+function formatRequisition(rarity, reqs, cat, scat) {
+    return format("{0}: {1}/{2}", rarity, reqs[cat][scat].filter(function(obj) {
+        return obj.rarity == rarity && obj.isOwned == true;
+    }).length, reqs[cat][scat].filter(function(obj) {
+        return obj.rarity == rarity;
+    }).length);
 }
