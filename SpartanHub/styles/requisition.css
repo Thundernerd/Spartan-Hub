@@ -1,0 +1,49 @@
+#requisitions {
+    overflow: auto;
+    width: 100%;
+}
+
+.requisition-wrapper {
+    float: left;
+    margin-top: 15px;
+}
+
+.requisition-wrapper.left {
+    margin-right: 10px;
+}
+
+.requisition-wrapper.right {
+    margin-left: 10px;
+}
+
+.requisition-header {
+    border: 1px solid;
+    border-top-right-radius: 15px;
+
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.requisition-category {
+    width: 498px;
+
+    border: solid;
+    border-width: 0px 1px 1px 1px;
+}
+
+.requisition-category.last {
+    border-bottom-right-radius: 5px;
+}
+
+.requisition-category table {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.requisition-category td {
+    width: 150px;
+}
+
+.requisition-category-header {
+    padding: 5px 0px 5px 15px;
+}

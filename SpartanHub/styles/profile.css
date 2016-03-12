@@ -1,0 +1,22 @@
+.profile-wrapper {
+    width: 100%;
+    height: 64px;
+
+    line-height: 64px;
+
+    border: 1px solid;
+
+    /*vertical-align: middle;*/
+    /*text-align: center;*/
+}
+
+.profile-wrapper h2 {
+    float: left;
+    margin-left: 15px;
+}
+
+.profile-wrapper img {
+    float: right;
+    width: 64px;
+    height: 64px;
+}
