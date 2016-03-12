@@ -17,7 +17,61 @@ function doProfileUI() {
 }
 
 function doCommendationsUI() {
+    var all = [];
+
+    for(var key in commendations) {
+        var cat = commendations[key];
+        for(var i = 0; i < cat.length; i++) {
+            var comm = cat[i];
+
+            if (comm.percentage == 100) continue;
+            all.push(comm);
+        }
+    }
+
+    all.sort(function(a,b) {
+        var av = a.percentage;
+        var bv = b.percentage;
+
+        if (a.level == "5/5" || a.level == "3/5") {
+            av += 100;
+        }
+
+        if (b.level == "5/5" || b.level == "3/5") {
+            bv += 100;
+        }
+
+        return bv-av;
+    });
+
     var text = "";
+
+    for (var i = 0; i < all.length; i++) {
+        var comm = all[i];
+        var isTop = i % 4 == 0 || i % 4 == 1;
+
+        if (i < 4) {
+            text += format("<section class=\"commendation-wrapper {0} {1}\">", i % 2 == 0 ? "left" : "right", isTop ? "top" : "bottom");
+        } else {
+            text += format("<section class=\"commendation-wrapper {0} {1}\" style=\"visibility:hidden;\" >", i % 2 == 0 ? "left" : "right", isTop ? "top" : "bottom");
+        }
+
+        text += "<section class=\"commendation-info\">";
+        text += format("<img src=\"{0}\"></img>", comm.imageUrl);
+        text += "<div>";
+        text += format("<h3 class=\"commendation-title\">{0}</h3>",comm.title);
+        text += format("<span class=\"commendation-level\">Level {0}</span><br>",comm.level);
+        text += format("<span class=\"commendation-description\">{0}</span>",comm.description);
+        text += "</div></section>";
+        // text += "<br><br>";
+        text += "<section class=\"commendation-stats\">";
+        text += format("<div class=\"outer-bar\"><div class=\"inner-bar\" style=\"width:{0}%;\">&nbsp;</div></div>", comm.percentage);
+        text += format("<span class=\"commendation-reward\">{0}</span>",comm.reward);
+        text += format("<span class=\"commendation-progress\">{0}</span>",comm.progress);
+        text += "</section>";
+
+        text += "</section>";
+    }
 
     append(text, "#commendations");
 }

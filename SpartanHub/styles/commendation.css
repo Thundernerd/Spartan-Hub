@@ -1,0 +1,97 @@
+#commendations {
+    overflow: hidden;
+    width: 100%;
+    height: 380px;
+}
+
+.commendation-wrapper {
+    float: left;
+    margin-top: 15px;
+    width: 500px;
+    border: 1px solid;
+}
+
+.commendation-wrapper.left {
+    margin-right: 8px;
+}
+
+.commendation-wrapper.right {
+    margin-left: 8px;
+}
+
+.commendation-wrapper.top.left {
+    border-bottom-right-radius: 5px;
+}
+
+.commendation-wrapper.top.right {
+    border-bottom-left-radius: 5px;
+}
+
+.commendation-wrapper.bottom.left {
+    border-top-right-radius: 5px;
+}
+
+.commendation-wrapper.bottom.right {
+    border-top-left-radius: 5px;
+}
+
+.commendation-info {
+    width: 100%;
+    height: 100px;
+}
+
+.commendation-stats {
+    margin-top: 20px;
+    height: 50px;
+}
+
+.commendation-info img {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 100px;
+}
+
+.commendation-info div {
+    margin-left: 110px;
+    margin-top: -100px;
+}
+
+.commendation-title {
+    /*margin-left: 100px;*/
+    /*margin-top: -100px;*/
+    /*text-transform: uppercase;*/
+}
+
+.commendation-level {
+    /*margin-left: 101px;*/
+    text-transform: uppercase;
+    /*width: 400px;*/
+}
+
+.commendation-description {
+    position: relative;
+    top: 5px;
+    /*margin-left: 100px;*/
+}
+
+.outer-bar {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 8px;
+    background-color: rgb(232, 232, 232);
+}
+
+.inner-bar {
+    height: 100%;
+    background-color: rgb(67, 187, 239);
+}
+
+.commendation-reward {
+    float: left;
+    margin-left: 5px;
+}
+
+.commendation-progress {
+    float: right;
+    margin-right: 5px;
+}

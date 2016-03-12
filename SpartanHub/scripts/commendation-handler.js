@@ -63,7 +63,7 @@ function getCommendations(html) {
             "title": $(c.find(".text--large")[0]).text().trim(),
             "level": $(c.find(".text--smallest")[0]).text().substr(6).trim(),
             "description": $(c.find(".description")[0]).text().trim(),
-            "percentage": $(c.find(".progress-chart")[0]).attr("data-value"),
+            "percentage": parseInt($(c.find(".progress-chart")[0]).attr("data-value")),
             "progress": $(c.find(".xp")[0]).text().trim(),
             "reward": $(c.find(".reward")[0]).text().trim()
         }
