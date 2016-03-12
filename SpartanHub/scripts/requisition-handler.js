@@ -110,10 +110,10 @@ function setRequisitions(category, reqs) {
     for (var i = 0; i < reqs.length; i++) {
         var req = reqs[i];
         var subcategory = toPascalCase(req.category);
-        if (requisitions[category] == undefined) {
+        if (requisitions[category] === undefined) {
             requisitions[category] = [];
         }
-        if (requisitions[category][subcategory] == undefined) {
+        if (requisitions[category][subcategory] === undefined) {
             requisitions[category][subcategory] = [];
         }
         requisitions[category][subcategory].push(req);

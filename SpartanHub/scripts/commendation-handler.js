@@ -78,7 +78,7 @@ function setCommendations(comms) {
     for (var i = 0; i < comms.length; i++) {
         var comm = comms[i];
         var category = comm.category;
-        if (commendations[category] == undefined) {
+        if (commendations[category] === undefined) {
             commendations[category] = [];
         }
         commendations[category].push(comm);
