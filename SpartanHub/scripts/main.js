@@ -10,13 +10,18 @@ function onLoggedIn() {
 }
 
 function onProfileLoaded() {
-    appendLine("profile loaded");
+    appendLine("");
+    doProfileUI();
 }
 
 function onRequisitionsLoaded() {
-    appendLine("requisitions loaded");
+    appendLine("");
+    doRequisitionsUI();
 }
 
 function onCommendationsLoaded() {
-    appendLine("commendations loaded");
+    appendLine("");
+    for(var key in commendations) {
+        appendLine(format("{0}: {1}", key, commendations[key].length));
+    }
 }
