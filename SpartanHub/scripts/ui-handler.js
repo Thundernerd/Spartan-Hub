@@ -2,7 +2,6 @@ function doProfileUI() {
     var text = "";
 
     text += "<section class=\"profile-wrapper\">";
-    // text += format("<h2>{0}</h2> &nbsp; - {1}", profile.name, profile.tag);
     text += format("<h2>{0}</h2>", profile.name);
     text += format("<img src=\"{0}\"></img>", profile.imageUrl);
     text += "</section>";
@@ -194,25 +193,13 @@ function formatRequisition(rarity, reqs, cat, scat) {
     }).length);
 }
 
-function hookUiInteraction() {
-    $("#nav-left").click(function() {
-        var index = getVisibleCommendationIndex();
-        console.log(index);
-    });
-
-    $("#nav-right").click(function() {
-        var index = getVisibleCommendationIndex();
-        console.log(index);
-    });
-}
-
 var commendationDoms;
 var commendationIndex = 0;
 
 var hoverLeft = false;
 var hoverRight = false;
 
-var fadeSpeed = 125;
+var fadeSpeed = 150;
 
 function hookCommendationUI() {
     commendationDoms = $(".commendation-wrapper");
