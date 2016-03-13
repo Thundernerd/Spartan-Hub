@@ -48,6 +48,24 @@ function doProfileUI() {
 
     append(text, "#playtime");
 
+    text = "";
+
+    for (var i = 0; i < profile.playlists.length; i++) {
+        var pl = profile.playlists[i];
+
+        text += format("<span class=\"left\"><h3>{0}</h3></span>", pl.title);
+        text += "<span class=\"right\"><h3>&nbsp;</h3></span>";
+        text += format("<span class=\"left\"><h4>{0}</h4></span>", pl.rank);
+        text += format("<span class=\"right\"><h4>{0} {1}</h4></span>",
+            pl.rank.substring(0, pl.rank.length-2).trim(), parseInt(pl.rank.substr(pl.rank.length-2).trim()) +1);
+        text += "<br style=\"clear:both;\">";
+        text += "<div class=\"outer-bar\">";
+        text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", pl.progress);
+        text += "&nbsp;</div>";
+        text += "</div>";
+    }
+
+    append(text, "#playlists");
     // appendLine(format("{0} - {1}", profile.name, profile.tag));
     // appendLine(format("<img src=\"{0}\"></img>", profile.imageUrl));
     // appendLine(format("{0} - {1}/{2} | {3}%", profile.rank, profile.currentXp, profile.maximumXp, profile.levelPercentage * 100));

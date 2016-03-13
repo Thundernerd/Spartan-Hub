@@ -21,15 +21,36 @@ var profile = {
     totalTime: 0,
     totalWins: 0,
     totalLosses: 0,
-    totalWinLossRatio: 0
+    totalWinLossRatio: 0,
+
+    playlists: []
 }
 
 function loadProfile() {
-    var url = format("https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/service-records/players/{0}", gamertag);
-
     profile.name = gamertag;
 
-    $.get(url, function(data) {
+    var genericDone = false;
+    var playlistsDone = false;
+
+    loadGenericInfo(function() {
+        genericDone = true;
+
+        if (genericDone && playlistsDone) {
+            onProfileLoaded();
+        }
+    });
+
+    loadPlaylists(function() {
+        playlistsDone = true;
+
+        if (genericDone && playlistsDone) {
+            onProfileLoaded();
+        }
+    });
+}
+
+function loadGenericInfo(callback) {
+    $.get(format("https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/service-records/players/{0}", gamertag), function(data) {
         var html = $(data);
 
         var arenaNode = html.find(".region.arena");
@@ -52,7 +73,48 @@ function loadProfile() {
         profile.warzoneTime = wt;
         profile.totalTime = tt;
 
-        onProfileLoaded();
+        callback();
+    });
+}
+
+function loadPlaylists(callback) {
+    $.get(format("https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/service-records/arena/players/{0}", gamertag), function(data) {
+        html = $(data);
+
+        var playlistNode = html.find(".table.special.detailed");
+        var playlists = $(playlistNode[0]).find("div.tr.valign-middle.has-details.show");
+
+        for (var i = playlists.length-1; i >= 0; i--) {
+            var pl = $(playlists[i]);
+            var nodes = pl.find("div.td.span-2")
+            var node = nodes[nodes.length-1];
+            var text = parseInt($(node).text().trim().replace("Games Completed:", "").trim());
+            if (text < 10) {
+                playlists.splice(i,1);
+            }
+        }
+
+        for (var i = 0; i < playlists.length; i++) {
+            var pl = $(playlists[i]);
+            var nodes = pl.find("div.td.span-3");
+            var title = $(nodes[0]).text().trim();
+
+            var temp = $(nodes[1]).find("div.csr");
+            var rank = $(temp[0]).text().trim();
+            var img = $($(temp[0]).children()[0]).attr("src");
+            var progress = parseInt($($(temp[0]).find(".progress-chart")[0]).attr("data-value"));
+
+            var tp = {
+                "title": title,
+                "rank": rank,
+                "imageUrl": img,
+                "progress": progress
+            };
+
+            profile.playlists.push(tp);
+        }
+
+        callback();
     });
 }
 
