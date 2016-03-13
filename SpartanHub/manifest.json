@@ -18,5 +18,7 @@
         "*://*.halowaypoint.com/*"
     ],
 
+    "incognito": "split",
+
     "manifest_version": 2
 }

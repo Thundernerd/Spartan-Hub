@@ -2,8 +2,11 @@
     var path = chrome.extension.getURL("index.html");
 
     function appClicked() {
-        chrome.tabs.create({
-            "url": path
+        chrome.windows.getCurrent(function(wind) {
+            chrome.tabs.create({
+                "windowId": wind.id,
+                "url": path
+            });
         });
     }
 
