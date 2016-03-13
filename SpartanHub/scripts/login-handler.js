@@ -10,6 +10,7 @@ function doLogin() {
             node = html.find("span.gamertag.case-sensitive");
             gamertag = $(node[0]).text();
 
+            $("#waiting-area").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)"});
             onLoggedIn()
         } else {
             window.addEventListener("focus", onFocusLogin);
