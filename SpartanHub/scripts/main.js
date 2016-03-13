@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#waiter").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)"});
+
     doLogin(onLoggedIn);
 });
 
@@ -10,7 +10,7 @@ var commendationsLoaded = false;
 function checkContent() {
     if (profileLoaded && requisitionsLoaded && commendationsLoaded) {
         $("#content").fadeIn();
-        $("#waiter").waitMe("hide");
+        $("#waiting-area").waitMe("hide");
     }
 }
 

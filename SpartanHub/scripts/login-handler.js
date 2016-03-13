@@ -13,10 +13,15 @@ function doLogin() {
             onLoggedIn()
         } else {
             window.addEventListener("focus", onFocusLogin);
-
-            chrome.tabs.create({"url":"https://halowaypoint.com/", "active":true});
+            $("#notification-area").append("<section class=\"notification\"><p class=\"notification-message\">Click here to log in to Waypoint</p></section>");
+            $("#notification-area").fadeIn(500);
+            $(".notification").click(function() { showWaypoint() });
         }
     });
+}
+
+function showWaypoint() {
+    chrome.tabs.create({url:"https://halowaypoint.com", active: true});
 }
 
 function onFocusLogin() {
@@ -30,6 +35,10 @@ function onFocusLogin() {
 
             window.removeEventListener("focus", onFocusLogin);
 
+            $("#notification-area").fadeOut(250);
+            setTimeout(function() {
+                $("#waiting-area").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)"});
+            }, 250);
             onLoggedIn();
         }
     });
