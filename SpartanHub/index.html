@@ -13,28 +13,35 @@
         <script src="scripts/commendation-handler.js"></script>
         <script src="scripts/requisition-handler.js"></script>
         <script src="scripts/ui-handler.js"></script>
+        <script src="scripts/waitMe.min.js"></script>
 
         <link rel="stylesheet" href="styles/main.css" />
         <link rel="stylesheet" href="styles/profile.css" />
         <link rel="stylesheet" href="styles/commendation.css" />
         <link rel="stylesheet" href="styles/requisition.css" />
+        <link rel="stylesheet" href="styles/waitMe.min.css" />
     </head>
 
     <body>
-        <div id="header"></div>
-        <br>
-        <div id="profile">
-            <div id="level">
+        <div id="content" style="display:none;">
+            <div id="header"></div>
+            <br>
+            <div id="profile">
+                <div id="level">
+                </div>
+                <div id="playtime">
+                </div>
             </div>
-            <div id="playtime">
+            <div id="commendations"></div>
+            <div id="commendation-nav">
+                <div id="nav-left" class="nav">&lt;</div>
+                <div id="nav-right" class="nav">&gt;</div>
             </div>
+            <div id="requisitions"></div>
+            <br>
         </div>
-        <div id="commendations"></div>
-        <div id="commendation-nav">
-            <div id="nav-left" class="nav">&lt;</div>
-            <div id="nav-right" class="nav">&gt;</div>
-        </div>
-        <div id="requisitions"></div>
+
+        <div id="waiter">&nbsp;</div>
     </body>
 
 </html>
