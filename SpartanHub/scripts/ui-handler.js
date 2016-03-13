@@ -53,7 +53,7 @@ function doCommendationsUI() {
         if (i < 4) {
             text += format("<section class=\"commendation-wrapper {0} {1}\">", i % 2 == 0 ? "left" : "right", isTop ? "top" : "bottom");
         } else {
-            text += format("<section class=\"commendation-wrapper {0} {1}\" style=\"visibility:hidden;\" >", i % 2 == 0 ? "left" : "right", isTop ? "top" : "bottom");
+            text += format("<section class=\"commendation-wrapper {0} {1}\" style=\"display: none;\" >", i % 2 == 0 ? "left" : "right", isTop ? "top" : "bottom");
         }
 
         text += "<section class=\"commendation-info\">";
@@ -74,6 +74,8 @@ function doCommendationsUI() {
     }
 
     append(text, "#commendations");
+
+    hookCommendationUI();
 }
 
 function doRequisitionsUI() {
@@ -121,4 +123,59 @@ function formatRequisition(rarity, reqs, cat, scat) {
     }).length, reqs[cat][scat].filter(function(obj) {
         return obj.rarity == rarity;
     }).length);
+}
+
+function hookUiInteraction() {
+    $("#nav-left").click(function() {
+        var index = getVisibleCommendationIndex();
+        console.log(index);
+    });
+
+    $("#nav-right").click(function() {
+        var index = getVisibleCommendationIndex();
+        console.log(index);
+    });
+}
+
+var commendationDoms;
+var commendationIndex = 0;
+
+var hoverLeft = false;
+var hoverRight = false;
+
+function hookCommendationUI() {
+    commendationDoms = $(".commendation-wrapper");
+
+    var left = $("#nav-left");
+    var right = $("#nav-right");
+
+    left.click(function() {
+        fadeCommendations(false);
+    });
+
+    right.click(function() {
+        fadeCommendations(true);
+    });
+}
+
+function fadeCommendations(right) {
+    var start = commendationIndex;
+    var amount = right == true ? 4 : -4;
+
+    if (start == 0 && amount == -4) {
+        return;
+    } else if (start >= (commendationDoms.length-4) && amount == 4) {
+        return;
+    }
+
+    for(var i = start; i < start + 4; i++) {
+        $(commendationDoms[i]).fadeOut(250);
+    }
+
+    start += amount;
+    commendationIndex += amount;
+
+    for(var i = start; i < start + 4; i++) {
+        $(commendationDoms[i]).delay(250).fadeIn(250);
+    }
 }
