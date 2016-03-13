@@ -22,19 +22,19 @@
 }
 
 .commendation-wrapper.top.left {
-    border-bottom-right-radius: 5px;
-}
-
-.commendation-wrapper.top.right {
-    border-bottom-left-radius: 5px;
-}
-
-.commendation-wrapper.bottom.left {
     border-top-right-radius: 5px;
 }
 
-.commendation-wrapper.bottom.right {
+.commendation-wrapper.top.right {
     border-top-left-radius: 5px;
+}
+
+.commendation-wrapper.bottom.left {
+    border-bottom-right-radius: 5px;
+}
+
+.commendation-wrapper.bottom.right {
+    border-bottom-left-radius: 5px;
 }
 
 .commendation-info {
