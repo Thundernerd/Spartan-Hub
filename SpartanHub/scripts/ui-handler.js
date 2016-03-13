@@ -143,6 +143,8 @@ var commendationIndex = 0;
 var hoverLeft = false;
 var hoverRight = false;
 
+var fadeSpeed = 125;
+
 function hookCommendationUI() {
     commendationDoms = $(".commendation-wrapper");
 
@@ -169,13 +171,13 @@ function fadeCommendations(right) {
     }
 
     for(var i = start; i < start + 4; i++) {
-        $(commendationDoms[i]).fadeOut(250);
+        $(commendationDoms[i]).fadeOut(fadeSpeed);
     }
 
     start += amount;
     commendationIndex += amount;
 
     for(var i = start; i < start + 4; i++) {
-        $(commendationDoms[i]).delay(250).fadeIn(250);
+        $(commendationDoms[i]).delay(fadeSpeed).fadeIn(fadeSpeed);
     }
 }
