@@ -10,7 +10,8 @@ var commendationsLoaded = false;
 function checkContent() {
     if (profileLoaded && requisitionsLoaded && commendationsLoaded) {
         $("#content").fadeIn();
-        $("#waiting-area").waitMe("hide");
+        $("#waiting-area").remove();
+        $("#notification-area").remove();
     }
 }
 
