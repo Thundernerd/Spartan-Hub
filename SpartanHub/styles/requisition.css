@@ -8,6 +8,10 @@
     margin-top: 15px;
 }
 
+.requisition-header {
+    cursor: pointer;
+}
+
 .requisition-wrapper.left {
     margin-right: 10px;
 }
@@ -46,4 +50,5 @@
 
 .requisition-category-header {
     padding: 5px 0px 5px 15px;
+    cursor: pointer;
 }

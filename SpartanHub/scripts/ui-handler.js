@@ -166,22 +166,41 @@ function doRequisitionsUI() {
 
             text += format("<h4 class=\"requisition-category-header\">{0}</h4>", scat);
 
-            text += "<table><tr>"
+            text += "<div class=\"requisition-category-slider\"><table><tr>"
             text += formatRequisition("Common", requisitions, cat, scat);
             text += formatRequisition("Uncommon", requisitions, cat, scat);
             text += formatRequisition("Rare", requisitions, cat, scat) + "</tr><tr>";
             text += formatRequisition("Ultra Rare", requisitions, cat, scat);
             text += formatRequisition("Legendary", requisitions, cat, scat);
-            text += "</tr></table></section>";
+            text += "</tr></table></div></section>";
 
             i++;
         }
 
         text += "</section>";
+
+        if (!left) {
+            text += "<br style=\"clear: both;\">";
+        }
+
         append(text, "#requisitions");
+        text = "";
 
         left = !left;
     }
+
+    $(".requisition-header").click(function() {
+        var sliders = $(this).parent().find(".requisition-category-slider");
+        if ($(sliders[0]).css("display") == "block") {
+            sliders.slideUp();
+        } else {
+            sliders.slideDown();
+        }
+    })
+
+    $(".requisition-category-header").click(function(){
+        $(this).parent().find(".requisition-category-slider").slideToggle();
+    })
 }
 
 function formatRequisition(rarity, reqs, cat, scat) {
