@@ -164,7 +164,7 @@ function doRequisitionsUI() {
                 text += "<section class=\"requisition-category last\">";
             }
 
-            text += format("<h4 class=\"requisition-category-header\">{0}</h4>", scat);
+            text += format("<h4 class=\"requisition-category-header\">{0} <img class=\"requisition-arrow\" src=\"images/arrow.png\" /></h4>", scat);
 
             text += "<div class=\"requisition-category-slider\"><table><tr>"
             text += formatRequisition("Common", requisitions, cat, scat);
@@ -189,26 +189,24 @@ function doRequisitionsUI() {
         left = !left;
     }
 
-    $(".requisition-header").click(function() {
-        var sliders = $(this).parent().find(".requisition-category-slider");
-        var down = 0, up = 0;
-        for (var i = 0; i < sliders.length; i++) {
-            if ($(sliders[i]).css("display") == "block") {
-                down++;
-            } else {
-                up++;
-            }
-        }
-
-        if (down > up) {
-            sliders.slideDown();
-        } else {
-            sliders.slideUp();
-        }
-    })
-
     $(".requisition-category-header").click(function(){
-        $(this).parent().find(".requisition-category-slider").slideToggle();
+        var slider = $($(this).parent().find(".requisition-category-slider")[0]);
+        var arrow = $($(this).find(".requisition-arrow")[0]);
+
+        if (slider.prop("slideState") === undefined) {
+            slider.prop("slideState", false);
+        }
+
+        slider.prop("slideState", !slider.prop("slideState"));
+        var newAngle = slider.prop("slideState") ? -90 : 0;
+
+        slider.stop().slideToggle(200);
+        arrow.stop().animate( { myProp: newAngle },{
+            duration: 200,
+            step: function(now, fx) {
+                $(this).css("-webkit-transform", format("rotate({0}deg)", now));
+            }
+        });
     })
 }
 
