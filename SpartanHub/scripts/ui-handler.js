@@ -23,29 +23,6 @@ function doProfileUI() {
 
     append(text, "#level");
 
-    // text = "";
-    // text += "<span class=\"left\"><h3>Arena</h3></span>";
-    // text += "<span class=\"right\"><h3>Warzone</h3></span>";
-    //
-    // text += format("<span class=\"left\"><h4>{0}.{1}:{2}:{3}</h4></span>",
-    //  profile.arenaTime.days, zero(profile.arenaTime.hours),
-    //  zero(profile.arenaTime.minutes), zero(profile.arenaTime.seconds));
-    //  text += format("<span class=\"right\"><h4>{0}.{1}:{2}:{3}</h4></span>",
-    //   profile.warzoneTime.days, zero(profile.warzoneTime.hours),
-    //   zero(profile.warzoneTime.minutes), zero(profile.warzoneTime.seconds));
-    //
-    // text += "<br style=\"clear:both;\">";
-    // text += "<div class=\"outer-bar warzone\">";
-    //
-    // var totalArena = getSeconds(profile.arenaTime);
-    // var total = getSeconds(profile.totalTime);
-    //
-    // text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", totalArena / total * 100);
-    // text += "&nbsp;</div>";
-    // text += "</div>";
-    //
-    // append(text, "#playtime");
-
     text = "";
 
     for (var i = 0; i < profile.playlists.length; i++) {
@@ -64,12 +41,6 @@ function doProfileUI() {
     }
 
     append(text, "#playlists");
-    // appendLine(format("{0} - {1}", profile.name, profile.tag));
-    // appendLine(format("<img src=\"{0}\"></img>", profile.imageUrl));
-    // appendLine(format("{0} - {1}/{2} | {3}%", profile.rank, profile.currentXp, profile.maximumXp, profile.levelPercentage * 100));
-    // appendLine(format("Arena: W:{0} L:{1} R: {2}", profile.arenaWins, profile.arenaLosses, profile.arenaWinLossRatio));
-    // appendLine(format("Warzone: W:{0} L:{1} R: {2}", profile.warzoneWins, profile.warzoneLosses, profile.warzoneWinLossRatio));
-    // appendLine(format("Total: W:{0} L:{1} R: {2}", profile.totalWins, profile.totalLosses, profile.totalWinLossRatio));
 }
 
 function getSeconds(time) {
