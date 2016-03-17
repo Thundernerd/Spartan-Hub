@@ -7,7 +7,7 @@
 .commendation-wrapper {
     float: left;
     margin-top: 15px;
-    width: 450px;
+    width: 448px;
     border: 1px solid;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .commendation-wrapper.right {
-    margin-left: 8px;
+    margin-left: 12px;
     margin-right: 50px;
 }
 

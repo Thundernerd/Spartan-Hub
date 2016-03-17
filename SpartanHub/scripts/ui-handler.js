@@ -2,7 +2,7 @@ function doProfileUI() {
     var text = "";
 
     text += "<section class=\"profile-wrapper\">";
-    text += format("<h2>{0}</h2>", profile.name);
+    text += format("<h2 id=\"gamertag\"><a target=\"_blank\" href=\"{1}\">{0}</a></h2>", profile.name, format("https://www.halowaypoint.com/en-us/games/halo-5-guardians/xbox-one/service-records/players/{0}", profile.name));
     text += format("<img src=\"{0}\"></img>", profile.imageUrl);
     text += "</section>";
 

@@ -20,9 +20,18 @@
     margin-left: 10px;
 }
 
+.requisition-wrapper.left .requisition-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 15px;
+}
+
+.requisition-wrapper.right .requisition-header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+}
+
 .requisition-header {
     border: 1px solid;
-    border-top-right-radius: 15px;
 
     padding: 5px;
     padding-left: 15px;
@@ -37,6 +46,7 @@
 
 .requisition-category.last {
     border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .requisition-category table {
