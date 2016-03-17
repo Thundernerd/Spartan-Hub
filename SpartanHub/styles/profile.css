@@ -4,10 +4,11 @@
 
     line-height: 64px;
 
-    border: 1px solid;
-
-    /*vertical-align: middle;*/
-    /*text-align: center;*/
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .profile-wrapper h2 {
