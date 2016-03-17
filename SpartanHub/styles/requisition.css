@@ -9,7 +9,7 @@
 }
 
 .requisition-header {
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .requisition-wrapper.left {
@@ -54,6 +54,8 @@
 }
 
 .requisition-arrow {
+    position: relative;
+    top: 1;
     width: 15px;
     height: 15px;
 }
