@@ -191,10 +191,19 @@ function doRequisitionsUI() {
 
     $(".requisition-header").click(function() {
         var sliders = $(this).parent().find(".requisition-category-slider");
-        if ($(sliders[0]).css("display") == "block") {
-            sliders.slideUp();
-        } else {
+        var down = 0, up = 0;
+        for (var i = 0; i < sliders.length; i++) {
+            if ($(sliders[i]).css("display") == "block") {
+                down++;
+            } else {
+                up++;
+            }
+        }
+
+        if (down > up) {
             sliders.slideDown();
+        } else {
+            sliders.slideUp();
         }
     })
 
