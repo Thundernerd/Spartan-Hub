@@ -109,7 +109,12 @@
 }
 
 .nav:hover {
+    background-color: rgba(0, 0, 0, .50);
     cursor: pointer;
+}
+
+.nav:active {
+    background-color: rgba(0, 0, 0, .75);
 }
 
 #nav-left {
