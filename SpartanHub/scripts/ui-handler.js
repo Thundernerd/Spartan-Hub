@@ -117,6 +117,57 @@ function doCommendationsUI() {
 }
 
 function doRequisitionsUI() {
+    simpleRequisitionsUI();
+    detailedRequisitionsUI();
+}
+
+function simpleRequisitionsUI() {
+    var common = { total:0, unlocked:0 }, uncommon = { total: 0, unlocked: 0 }, rare = { total: 0, unlocked: 0 }, ultrarare = { total: 0, unlocked: 0 }, legendary = { total: 0, unlocked: 0 };
+    for(var cat in requisitions) {
+        for (var scat in requisitions[cat]) {
+            var item = requisitions[cat][scat];
+
+            common.unlocked += item.filter(function(obj) { return obj.rarity == "Common" && obj.isOwned == true }).length;
+            common.total += item.filter(function(obj) { return obj.rarity == "Common" }).length;
+
+            uncommon.unlocked += item.filter(function(obj) { return obj.rarity == "Uncommon" && obj.isOwned == true }).length;
+            uncommon.total += item.filter(function(obj) { return obj.rarity == "Uncommon" }).length;
+
+            rare.unlocked += item.filter(function(obj) { return obj.rarity == "Rare" && obj.isOwned == true }).length;
+            rare.total += item.filter(function(obj) { return obj.rarity == "Rare" }).length;
+
+            ultrarare.unlocked += item.filter(function(obj) { return obj.rarity == "Ultra Rare" && obj.isOwned == true }).length;
+            ultrarare.total += item.filter(function(obj) { return obj.rarity == "Ultra Rare" }).length;
+
+            legendary.unlocked += item.filter(function(obj) { return obj.rarity == "Legendary" && obj.isOwned == true }).length;
+            legendary.total += item.filter(function(obj) { return obj.rarity == "Legendary" }).length
+        }
+    }
+
+    append("<br>", "#requisitions-overview");
+    append(formatSimpleRequisitions("Common", common), "#requisitions-overview");
+    append(formatSimpleRequisitions("Uncommon", uncommon), "#requisitions-overview");
+    append(formatSimpleRequisitions("Rare", rare), "#requisitions-overview");
+    append(formatSimpleRequisitions("Ultra Rare", ultrarare), "#requisitions-overview");
+    append(formatSimpleRequisitions("Legendary", legendary), "#requisitions-overview");
+}
+
+function formatSimpleRequisitions(name, rarity) {
+    var text = "";
+    text += format("<span class=\"left\"><h3>{0}</h3></span>", name);
+    text += format("<span class=\"right\"><h3>{0}</h3></span>", name);
+    text += format("<span class=\"left\"><h4>{0}</h4></span>", rarity.unlocked);
+    text += format("<span class=\"right\"><h4>{0}</h4></span>", rarity.total);
+    text += "<br style=\"clear:both;\">";
+    text += "<div class=\"outer-bar\">";
+    text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", rarity.unlocked / rarity.total * 100);
+    text += "&nbsp;</div>";
+    text += "</div>";
+
+    return text;
+}
+
+function detailedRequisitionsUI() {
     var left = true;
 
     for(var cat in requisitions) {
@@ -191,9 +242,6 @@ function formatRequisition(rarity, reqs, cat, scat) {
 
 var commendationDoms;
 var commendationIndex = 0;
-
-var hoverLeft = false;
-var hoverRight = false;
 
 var fadeSpeed = 150;
 
