@@ -29,7 +29,7 @@ function doProfileUI() {
         var pl = profile.playlists[i];
 
         text += format("<span class=\"left\"><h3>{0}</h3></span>", pl.title);
-        text += "<span class=\"right\"><h3>&nbsp;</h3></span>";
+        text += format("<span class=\"right\"><h3>{0}</h3></span>", pl.title);
         text += format("<span class=\"left\"><h4>{0}</h4></span>", pl.rank);
         text += format("<span class=\"right\"><h4>{0} {1}</h4></span>",
             pl.rank.substring(0, pl.rank.length-2).trim(), parseInt(pl.rank.substr(pl.rank.length-2).trim()) +1);
