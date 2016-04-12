@@ -19,4 +19,6 @@ Depends on what the feature is, you can always create an issue requesting the fe
 #### I have a different question
 Feel free to email me at contact@tnrd.net
 
+=====
+
 *Icons by [Svengraph](http://svengraph.deviantart.com/)*
