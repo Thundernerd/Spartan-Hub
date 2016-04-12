@@ -1,8 +1,6 @@
 # Spartan Hub
 Spartan Hub is an extension for Google Chrome that gives you a quick overview of your spartan rank, playlist ranks, and your commendation and requisition stats.
 
-*Icons by [Svengraph](http://svengraph.deviantart.com/)
-
 Here's how it looks
 ![preview](http://i.imgur.com/7uTnk31.png)
 
@@ -20,3 +18,5 @@ Depends on what the feature is, you can always create an issue requesting the fe
 
 #### I have a different question
 Feel free to email me at contact@tnrd.net
+
+*Icons by [Svengraph](http://svengraph.deviantart.com/)*
