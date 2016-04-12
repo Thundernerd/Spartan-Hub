@@ -4,6 +4,9 @@ Spartan Hub is an extension for Google Chrome that gives you a quick overview of
 Here's how it looks
 ![preview](http://i.imgur.com/7uTnk31.png)
 
+#### Where do I download it?
+Right over [here](https://chrome.google.com/webstore/detail/spartan-hub/cndpfepbgejcpednnkpbpmabijjoclpp)
+
 #### How do you get my data!?
 The moment you log in to halowaypoint.com this extension can read the data for your HaloWaypoint profile. In the background this extension goes to the pages that show your commendations and requisitions, and parses this data so that it can show it to you in a compact manner.
 
