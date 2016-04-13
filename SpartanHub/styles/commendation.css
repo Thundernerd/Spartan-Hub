@@ -96,7 +96,7 @@
     padding: 15px 0px 0px 0px;
     text-align: center;
     vertical-align: middle;
-    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 .nav {

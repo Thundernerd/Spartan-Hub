@@ -11,6 +11,7 @@ function doLogin() {
             gamertag = $(node[0]).text();
 
             $("#waiting-area").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)"});
+            $(".waitMe_content").css("top","");
             onLoggedIn()
         } else {
             window.addEventListener("focus", onFocusLogin);

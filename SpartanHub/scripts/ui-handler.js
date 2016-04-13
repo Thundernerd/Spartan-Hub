@@ -233,7 +233,7 @@ function detailedRequisitionsUI() {
         arrow.stop().animate( { myProp: newAngle },{
             duration: 200,
             step: function(now, fx) {
-                $(this).css("-webkit-transform", format("rotate({0}deg)", now));
+                $(this).css("-moz-transform", format("rotate({0}deg)", now));
             }
         });
     })
