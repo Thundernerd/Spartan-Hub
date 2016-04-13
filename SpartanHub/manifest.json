@@ -22,7 +22,8 @@
     },
 
     "browser_action": {
-        "default_title": "Spartan Hub"
+        "default_title": "Spartan Hub",
+        "default_icon": "images/icon32.png"
     },
 
     "permissions": [
