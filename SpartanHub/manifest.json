@@ -9,6 +9,12 @@
         "persistent": false
     },
 
+    "applications": {
+        "gecko": {
+            "id": "spartanhub@tnrd.net"
+        }
+    },
+
     "icons": {
         "32": "images/icon32.png",
         "48": "images/icon48.png",
