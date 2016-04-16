@@ -32,17 +32,25 @@ function doProfileUI() {
         text += format("<span class=\"right\"><h3>{0}</h3></span>", pl.title);
         text += format("<span class=\"left\"><h4>{0}</h4></span>", pl.rank);
 
-        var t = parseInt(pl.rank.substr(pl.rank.length-2).trim()) + 1;
-        if (t == 7) {
-            text += format("<span class=\"right\"><h4>RANK UP</h4></span>");
+        if (pl.hasProgress) {
+            var t = parseInt(pl.rank.substr(pl.rank.length-2).trim()) + 1;
+            if (t == 7) {
+                text += format("<span class=\"right\"><h4>RANK UP</h4></span>");
+            } else {
+                text += format("<span class=\"right\"><h4>{0} {1}</h4></span>",
+                    pl.rank.substring(0, pl.rank.length-2).trim(), parseInt(pl.rank.substr(pl.rank.length-2).trim()) +1);
+            }
         } else {
-            text += format("<span class=\"right\"><h4>{0} {1}</h4></span>",
-                pl.rank.substring(0, pl.rank.length-2).trim(), parseInt(pl.rank.substr(pl.rank.length-2).trim()) +1);
+            text += format("<span class=\"right\"><h4>CSR {0}</h4></span>", pl.progress);
         }
 
         text += "<br style=\"clear:both;\">";
         text += "<div class=\"outer-bar\">";
-        text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", pl.progress);
+        if (pl.hasProgress) {
+            text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", pl.progress);
+        } else {
+            text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", 100);
+        }
         text += "&nbsp;</div>";
         text += "</div>";
     }

@@ -102,12 +102,23 @@ function loadPlaylists(callback) {
             var temp = $(nodes[1]).find("div.csr");
             var rank = $(temp[0]).text().trim();
             var img = $($(temp[0]).children()[0]).attr("src");
-            var progress = parseInt($($(temp[0]).find(".progress-chart")[0]).attr("data-value"));
+
+            var hasProgress = $(temp[0]).find(".progress-chart").length > 0;
+
+            var progress = 0;
+            if (hasProgress) {
+                progress = parseInt($($(temp[0]).find(".progress-chart")[0]).attr("data-value"));
+            } else {
+                var info = $(temp[0]).find(".rank-info");
+                rank = $($(info[0]).children()[0]).text().trim();
+                progress = $($(info[0]).children()[1]).text().trim().replace("CSR: ", "");
+            }
 
             var tp = {
                 "title": title,
                 "rank": rank,
                 "imageUrl": img,
+                "hasProgress": hasProgress,
                 "progress": progress
             };
 
