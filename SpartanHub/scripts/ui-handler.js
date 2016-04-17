@@ -183,7 +183,7 @@ function simpleRequisitionsUI() {
     var goldPrice = goldPacks * 10000;
 
     var text = "";
-    text += "<div id=\"requisition-packs\"><table><tr><th class=\"bright bbottom\"><h3>Pack</h3></th><th class=\"bright bbottom bleft\"><h3>Amount to Buy</h3></th><th class=\"bright bbottom bleft\"><h3>REQ points needed</h3></th><th class=\"bbottom bleft\"><h3>Monetary cost</h3></th></tr>";
+    text += "<div id=\"requisition-packs\"><table><tr><th class=\"bright bbottom\"><h3>Pack</h3></th><th class=\"bright bbottom bleft\"><h3>Packs needed</h3></th><th class=\"bright bbottom bleft\"><h3>REQ points needed</h3></th><th class=\"bbottom bleft\"><h3>Monetary costs</h3></th></tr>";
     text += format("<tr><td class=\"bright btop bbottom\">{0}</td><td class=\"bright btop bbottom bleft\">{1}</td><td class=\"bright btop bbottom bleft\">{2}</td><td class=\"btop bbottom bleft\">${3}</td></tr>", "Bronze", bronzePacks, bronzePrice, 0);
     text += format("<tr><td class=\"bright btop bbottom\">{0}</td><td class=\"bright btop bbottom bleft\">{1}</td><td class=\"bright btop bbottom bleft\">{2}</td><td class=\"btop bbottom bleft\">${3}</td></tr>", "Silver", silverPacks, silverPrice, silverPacks * 2);
     text += format("<tr><td class=\"bright btop bbottom\">{0}</td><td class=\"bright btop bbottom bleft\">{1}</td><td class=\"bright btop bbottom bleft\">{2}</td><td class=\"btop bbottom bleft\">${3}</td></tr>", "Gold", goldPacks, goldPrice, goldPacks * 3);
