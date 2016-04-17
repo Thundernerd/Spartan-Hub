@@ -12,35 +12,42 @@
     width: 100%;
 }
 
-#requistions-packs {
+#requisition-packs {
+    width: 1018px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+#requisition-packs table {
     width: 100%;
-}
-
-#requisitions-packs {
-    width: 100%;
-}
-
-#requisitions-packs {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-#requisitions-packs th {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-transform: uppercase;
     padding: 2px;
+    text-transform: uppercase;
     vertical-align: middle;
     text-align: center;
 }
 
-#requisitions-packs td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-transform: uppercase;
+#requisition-packs th {
     padding: 2px;
-    vertical-align: middle;
-    text-align: center;
+}
+
+#requisition-packs td {
+    padding: 2px;
+}
+
+.bright {
+    border-right: 1px solid;
+}
+
+.bleft {
+    border-left: 1px solid;
+}
+
+.btop {
+    border-top: 1px solid;
+}
+
+.bbottom {
+    border-bottom: 1px solid;
 }
 
 .requisition-wrapper {
