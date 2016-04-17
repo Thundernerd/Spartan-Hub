@@ -12,6 +12,37 @@
     width: 100%;
 }
 
+#requistions-packs {
+    width: 100%;
+}
+
+#requisitions-packs {
+    width: 100%;
+}
+
+#requisitions-packs {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#requisitions-packs th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-transform: uppercase;
+    padding: 2px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#requisitions-packs td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-transform: uppercase;
+    padding: 2px;
+    vertical-align: middle;
+    text-align: center;
+}
+
 .requisition-wrapper {
     float: left;
     margin-top: 15px;

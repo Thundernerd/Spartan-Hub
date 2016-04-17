@@ -111,7 +111,12 @@ function loadPlaylists(callback) {
             } else {
                 var info = $(temp[0]).find(".rank-info");
                 rank = $($(info[0]).children()[0]).text().trim();
-                progress = $($(info[0]).children()[1]).text().trim().replace("CSR: ", "");
+                if (rank.indexOf("Champion") > -1) {
+                    progress = rank.replace("Champion", "").replace("#","");
+                    rank = "Champion";
+                } else {
+                    progress = $($(info[0]).children()[1]).text().trim().replace("CSR: ", "");
+                }
             }
 
             var tp = {

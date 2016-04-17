@@ -30,9 +30,20 @@ function doProfileUI() {
 
         text += format("<span class=\"left\"><h3>{0}</h3></span>", pl.title);
         text += format("<span class=\"right\"><h3>{0}</h3></span>", pl.title);
-        text += format("<span class=\"left\"><h4>{0}</h4></span>", pl.rank);
 
-        if (pl.hasProgress) {
+        if (pl.rank == "Onyx" || pl.rank == "Champion") {
+            var isOnyx = pl.rank == "Onyx";
+
+            text += format("<span class=\"left\"><h4>{0} {1}</h4></span>", pl.rank, pl.progress);
+            text += format("<span class=\"right\"><h4>{0} {1}</h4></span>", pl.rank, isOnyx ? 2500 : 1);
+
+            text += "<br style=\"clear:both;\">";
+            text += "<div class=\"outer-bar\">";
+            text += format("<div class=\"inner-bar\" style=\"width:{0}%\">",
+                        (isOnyx ? pl.progress / 2500 : 1 - (pl.progress / 250)) * 100);
+        } else {
+            text += format("<span class=\"left\"><h4>{0}</h4></span>", pl.rank);
+
             var t = parseInt(pl.rank.substr(pl.rank.length-2).trim()) + 1;
             if (t == 7) {
                 text += format("<span class=\"right\"><h4>RANK UP</h4></span>");
@@ -40,17 +51,12 @@ function doProfileUI() {
                 text += format("<span class=\"right\"><h4>{0} {1}</h4></span>",
                     pl.rank.substring(0, pl.rank.length-2).trim(), parseInt(pl.rank.substr(pl.rank.length-2).trim()) +1);
             }
-        } else {
-            text += format("<span class=\"right\"><h4>CSR {0}</h4></span>", pl.progress);
+
+            text += "<br style=\"clear:both;\">";
+            text += "<div class=\"outer-bar\">";
+            text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", pl.progress);
         }
 
-        text += "<br style=\"clear:both;\">";
-        text += "<div class=\"outer-bar\">";
-        if (pl.hasProgress) {
-            text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", pl.progress);
-        } else {
-            text += format("<div class=\"inner-bar\" style=\"width:{0}%\">", 100);
-        }
         text += "&nbsp;</div>";
         text += "</div>";
     }
@@ -160,11 +166,31 @@ function simpleRequisitionsUI() {
     }
 
     append("<br>", "#requisitions-overview");
-    append(formatSimpleRequisitions("Common", common), "#requisitions-overview");
-    append(formatSimpleRequisitions("Uncommon", uncommon), "#requisitions-overview");
-    append(formatSimpleRequisitions("Rare", rare), "#requisitions-overview");
-    append(formatSimpleRequisitions("Ultra Rare", ultrarare), "#requisitions-overview");
-    append(formatSimpleRequisitions("Legendary", legendary), "#requisitions-overview");
+    append("<div id=\"requisitions-simple\">", "#requisitions-overview");
+    append(formatSimpleRequisitions("Common", common), "#requisitions-simple");
+    append(formatSimpleRequisitions("Uncommon", uncommon), "#requisitions-simple");
+    append(formatSimpleRequisitions("Rare", rare), "#requisitions-simple");
+    append(formatSimpleRequisitions("Ultra Rare", ultrarare), "#requisitions-simple");
+    append(formatSimpleRequisitions("Legendary", legendary), "#requisitions-simple");
+
+    var bronzePacks = common.total - common.unlocked;
+    var bronzePrice = bronzePacks * 1250;
+
+    var silverPacks = Math.ceil((uncommon.total - uncommon.unlocked + rare.total - rare.unlocked) / 2);
+    var silverPrice = silverPacks * 5000;
+
+    var goldPacks = Math.ceil((ultrarare.total - ultrarare.unlocked + legendary.total - legendary.unlocked) / 2);
+    var goldPrice = goldPacks * 10000;
+
+    var text = "";
+    text += "<table id=\"requisitions-packs\"><tr><th><h3>Pack</h3></th><th><h3>Amount to Buy</h3></th><th><h3>REQ points needed</h3></th><th><h3>Monetary cost</h3></th></tr>";
+    text += format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>${3}</td></tr>", "Bronze", bronzePacks, bronzePrice, 0);
+    text += format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>${3}</td></tr>", "Silver", silverPacks, silverPrice, silverPacks * 2);
+    text += format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>${3}</td></tr>", "Gold", goldPacks, goldPrice, goldPacks * 3);
+    text += format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>${3}</td></tr>",
+                "Total", bronzePacks + silverPacks + goldPacks, bronzePrice + silverPrice + goldPrice, (silverPacks * 2) + (goldPacks * 3));
+
+    append(text, "#requisitions-overview");
 }
 
 function formatSimpleRequisitions(name, rarity) {
