@@ -139,28 +139,30 @@ function doCommendationsUI() {
 
 function doRequisitionsUI() {
     simpleRequisitionsUI();
+    packsRequisitionsUI();
     detailedRequisitionsUI();
 }
 
 function simpleRequisitionsUI() {
     var common = { total:0, unlocked:0 }, uncommon = { total: 0, unlocked: 0 }, rare = { total: 0, unlocked: 0 }, ultrarare = { total: 0, unlocked: 0 }, legendary = { total: 0, unlocked: 0 };
+
     for(var cat in requisitions) {
         for (var scat in requisitions[cat]) {
             var item = requisitions[cat][scat];
 
-            common.unlocked += item.filter(function(obj) { return obj.rarity == "Common" && obj.isOwned == true }).length;
+            common.unlocked += item.filter(function(obj) { return obj.rarity == "Common" && obj.isOwned  }).length;
             common.total += item.filter(function(obj) { return obj.rarity == "Common" }).length;
 
             uncommon.unlocked += item.filter(function(obj) { return obj.rarity == "Uncommon" && obj.isOwned == true }).length;
             uncommon.total += item.filter(function(obj) { return obj.rarity == "Uncommon" }).length;
 
-            rare.unlocked += item.filter(function(obj) { return obj.rarity == "Rare" && obj.isOwned == true }).length;
+            rare.unlocked += item.filter(function(obj) { return obj.rarity == "Rare" && obj.isOwned  }).length;
             rare.total += item.filter(function(obj) { return obj.rarity == "Rare" }).length;
 
-            ultrarare.unlocked += item.filter(function(obj) { return obj.rarity == "Ultra Rare" && obj.isOwned == true }).length;
+            ultrarare.unlocked += item.filter(function(obj) { return obj.rarity == "Ultra Rare" && obj.isOwned }).length;
             ultrarare.total += item.filter(function(obj) { return obj.rarity == "Ultra Rare" }).length;
 
-            legendary.unlocked += item.filter(function(obj) { return obj.rarity == "Legendary" && obj.isOwned == true }).length;
+            legendary.unlocked += item.filter(function(obj) { return obj.rarity == "Legendary" && obj.isOwned  }).length;
             legendary.total += item.filter(function(obj) { return obj.rarity == "Legendary" }).length
         }
     }
@@ -172,6 +174,31 @@ function simpleRequisitionsUI() {
     append(formatSimpleRequisitions("Rare", rare), "#requisitions-simple");
     append(formatSimpleRequisitions("Ultra Rare", ultrarare), "#requisitions-simple");
     append(formatSimpleRequisitions("Legendary", legendary), "#requisitions-simple");
+}
+
+function packsRequisitionsUI() {
+    var common = { total:0, unlocked:0 }, uncommon = { total: 0, unlocked: 0 }, rare = { total: 0, unlocked: 0 }, ultrarare = { total: 0, unlocked: 0 }, legendary = { total: 0, unlocked: 0 };
+
+    for(var cat in requisitions) {
+        for (var scat in requisitions[cat]) {
+            var item = requisitions[cat][scat];
+
+            common.unlocked += item.filter(function(obj) { return obj.rarity == "Common" && obj.isOwned && !obj.specialPack }).length;
+            common.total += item.filter(function(obj) { return obj.rarity == "Common" && !obj.specialPack }).length;
+
+            uncommon.unlocked += item.filter(function(obj) { return obj.rarity == "Uncommon" && obj.isOwned && !obj.specialPack }).length;
+            uncommon.total += item.filter(function(obj) { return obj.rarity == "Uncommon" && !obj.specialPack }).length;
+
+            rare.unlocked += item.filter(function(obj) { return obj.rarity == "Rare" && obj.isOwned && !obj.specialPack }).length;
+            rare.total += item.filter(function(obj) { return obj.rarity == "Rare" && !obj.specialPack }).length;
+
+            ultrarare.unlocked += item.filter(function(obj) { return obj.rarity == "Ultra Rare" && obj.isOwned && !obj.specialPack }).length;
+            ultrarare.total += item.filter(function(obj) { return obj.rarity == "Ultra Rare" && !obj.specialPack }).length;
+
+            legendary.unlocked += item.filter(function(obj) { return obj.rarity == "Legendary" && obj.isOwned && !obj.specialPack }).length;
+            legendary.total += item.filter(function(obj) { return obj.rarity == "Legendary" && !obj.specialPack }).length
+        }
+    }
 
     var bronzePacks = common.total - common.unlocked;
     var bronzePrice = bronzePacks * 1250;

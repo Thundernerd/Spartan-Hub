@@ -10,11 +10,17 @@ var requisitions = {
     "Boost": []
 }
 
+var packedReqs;
+
 function loadRequisitions() {
     var customizationDone = false;
     var loadoutDone = false;
     var powerAndVehicleDone = false;
     var boostDone = false;
+
+    $.getJSON("../data/packedReqs.json", function(json) {
+        packedReqs = json;
+    });
 
     downloadRequisitions(customizationUrl, "Customization", function() {
         customizationDone = true;
@@ -96,8 +102,16 @@ function getRequisitions(region) {
                 "rarity": btn.attr("data-rarity").trim(),
                 "rarityType": parseInt(btn.attr("data-rarity-type").trim()),
                 "energyLevel": parseInt(btn.attr("data-energy-level").trim()),
-                "imageUrl": $(img).attr("data-src").trim()
+                "imageUrl": $(img).attr("data-src").trim(),
+                "specialPack": false
             };
+
+            for (var k = 0; k < packedReqs.length; k++) {
+                if (card.name.toLowerCase() == packedReqs[k].toLowerCase()) {
+                    card.specialPack = true;
+                    break;
+                }
+            }
 
             reqs.push(card);
         }
