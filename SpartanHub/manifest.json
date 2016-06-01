@@ -1,6 +1,6 @@
 {
     "name": "Spartan Hub",
-    "version": "1.0",
+    "version": "1.0.4",
     "description": "Companion for Halo 5 that gives you a quick overview of your stats",
     "background": {
         "scripts": [
