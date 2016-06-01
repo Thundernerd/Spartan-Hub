@@ -262,6 +262,11 @@ function detailedRequisitionsUI() {
             text += formatRequisition("Rare", requisitions, cat, scat) + "</tr><tr>";
             text += formatRequisition("Ultra Rare", requisitions, cat, scat);
             text += formatRequisition("Legendary", requisitions, cat, scat);
+
+            text += format("<td>Total: {0}/{1}</td>",
+                requisitions[cat][scat].filter(function(obj) { return obj.isOwned; }).length,
+                requisitions[cat][scat].length);
+
             text += "</tr></table></div></section>";
 
             i++;
