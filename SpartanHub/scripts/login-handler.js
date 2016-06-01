@@ -5,8 +5,8 @@ function doLogin() {
         var html = $(data);
         var node = html.find("span.gamertag");
 
-        // 2 is logged in; 1 is not
-        if (node.length == 2) {
+        // 1 is logged in; 0 is not
+        if (node.length == 1) {
             node = html.find("span.gamertag.case-sensitive");
             gamertag = $(node[0]).text();
 
@@ -30,7 +30,7 @@ function onFocusLogin() {
         var html = $(data);
         var node = html.find("span.gamertag");
 
-        if (node.length == 2) {
+        if (node.length == 1) {
             node = html.find("span.gamertag.case-sensitive");
             gamertag = $(node[0]).text();
 
