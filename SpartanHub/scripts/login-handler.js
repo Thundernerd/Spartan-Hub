@@ -18,20 +18,20 @@ function doLogin() {
         }
     });
 
-    failedLogin = false;
+    hasFailedLogin = false;
     setTimeout(checkDuration, 7500);
 }
 
-var failedLogin = false;
+var hasFailedLogin = false;
 
 function checkDuration() {
-    if (!profileLoaded || !requisitionsLoaded || !commendationsLoaded || !failedLogin) {
+    if (!profileLoaded || !requisitionsLoaded || !commendationsLoaded || !hasFailedLogin) {
         $("#waiting-area").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)", "text": "This is taking longer than expected"});
     }
 }
 
 function failedLogin() {
-    failedLogin = true;
+    hasFailedLogin = true;
     $("#waiting-area").remove();
     showNotification("It seems something went wrong :( please try again", forceRefresh);
 }
