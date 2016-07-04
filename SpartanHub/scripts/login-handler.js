@@ -14,11 +14,30 @@ function doLogin() {
             onLoggedIn()
         } else {
             window.addEventListener("focus", onFocusLogin);
-            $("#notification-area").append("<section class=\"notification\"><p class=\"notification-message\">Click here to log in to Waypoint</p></section>");
-            $("#notification-area").fadeIn(500);
-            $(".notification").click(function() { showWaypoint() });
+            showNotification("Click here to log in to Waypoint", showWaypoint);
         }
     });
+
+    failedLogin = false;
+    setTimeout(checkDuration, 7500);
+}
+
+var failedLogin = false;
+
+function checkDuration() {
+    if (!profileLoaded || !requisitionsLoaded || !commendationsLoaded || !failedLogin) {
+        $("#waiting-area").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)", "text": "This is taking longer than expected"});
+    }
+}
+
+function failedLogin() {
+    failedLogin = true;
+    $("#waiting-area").remove();
+    showNotification("It seems something went wrong :( please try again", forceRefresh);
+}
+
+function forceRefresh() {
+    location.reload(true);
 }
 
 function showWaypoint() {
@@ -36,7 +55,7 @@ function onFocusLogin() {
 
             window.removeEventListener("focus", onFocusLogin);
 
-            $("#notification-area").fadeOut(250);
+            removeNotification();
             setTimeout(function() {
                 $("#waiting-area").waitMe({"effect":"pulse", "bg": "rgba(0,0,0,0)"});
             }, 250);

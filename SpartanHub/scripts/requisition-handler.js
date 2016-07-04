@@ -11,12 +11,15 @@ var requisitions = {
 }
 
 var packedReqs;
+var failedReqs = false;
 
 function loadRequisitions() {
     var customizationDone = false;
     var loadoutDone = false;
     var powerAndVehicleDone = false;
     var boostDone = false;
+
+    failedReqs = false;
 
     $.getJSON("../data/packedReqs.json", function(json) {
         packedReqs = json;
@@ -54,6 +57,11 @@ function downloadRequisitions(url, category, callback) {
         setRequisitions(category, reqs);
 
         callback();
+    }).fail(function() {
+        if (!failedReqs) {
+            failedReqs = true;
+            failedLogin();
+        }
     });
 }
 
